@@ -42,13 +42,16 @@ const ContentModalContainer = styled.div`
   background-color: white;
   border-radius: 10px;
   padding: 10px;
+  overflow: scroll;
+  overflow-x: hidden;
 `;
 
 const CloseContainer = styled.div`
   position: fixed;
-  right: 25%;
+  right: 26%;
   top: 25%;
-  :hover {
+  
+  &:hover {
     cursor: pointer;
   }
 `;

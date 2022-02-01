@@ -15,7 +15,7 @@ export const getBeersList = (page, perPage) => async (dispatch) => {
     dispatch({
       type: GET_BEER_LIST_START,
     })
- 
+
     const data = await getBeers(page, perPage);
 
     dispatch({
@@ -35,12 +35,12 @@ export const getBeer = (page) => async (dispatch) => {
     dispatch({
       type: GET_BEER_START,
     })
- 
+
     const data = await getCurrentBeer(page);
 
     dispatch({
       type: GET_BEER_SUCCESS,
-      payload: data,
+      payload: data[0],
     })
   } catch (err) {
     dispatch({

@@ -1,6 +1,24 @@
 import styled from "styled-components";
+import DualRingLoader from "../../../DualRingLoader";
 
-const TableRows = ({ rows, onOpenModal }) => {
+const TableRows = ({ rows, onOpenModal, isLoading }) => {
+
+  if (isLoading) return (
+    <TableRow>
+      <LoadingContainer>
+        <DualRingLoader height="30px" width="30px" />
+      </LoadingContainer>
+    </TableRow>
+  )
+
+  if (!rows.length) return (
+    <TableRow>
+      <NothingFound>
+        Sorry, nothing found. Please try later.
+      </NothingFound>
+    </TableRow>
+  )
+
   return (
     <Container>
       {rows.map((row) => (
@@ -8,7 +26,7 @@ const TableRows = ({ rows, onOpenModal }) => {
           <CellContent>{row.name}</CellContent>
           <CellContent>{row.tagline}</CellContent>
           <CellContent>
-            <img src={row.image_url} alt="ПИВО" style={{ width: "64px" }} onClick={() => onOpenModal(row.id)} />
+            <BeerImage src={row.image_url} alt="ПИВО" style={{ width: "64px" }} onClick={() => onOpenModal(row.id)}/>
           </CellContent>
           <CellContent>{row.abv}</CellContent>
         </TableRow>
@@ -21,7 +39,7 @@ const Container = styled.div``;
 
 const TableRow = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   border: 1px solid gray;
   border-top: none;
   width: 100%;
@@ -35,6 +53,21 @@ const CellContent = styled.div`
 
   &:first-child {
     border: none;
+  }
+`;
+
+const LoadingContainer = styled.div`
+  width: 60px;
+  height: 60px;
+`;
+
+const NothingFound = styled.span`
+  margin: 10px 0;
+`;
+
+const BeerImage = styled.img`
+  &:hover {
+    cursor: pointer;
   }
 `;
 

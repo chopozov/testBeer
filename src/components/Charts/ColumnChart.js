@@ -13,12 +13,12 @@ function ColumnChart ({ google, info }) {
       const options = {
         title: "ABV",
         width: 1200,
-        height: 300, 
+        height: 300,
       };
 
       const newChart = new google.visualization.ColumnChart(document.getElementById("ABV"));
       newChart.draw(data, options);
-      
+
       setChart(newChart);
     }
   }, [google, chart, info]);

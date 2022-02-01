@@ -7,7 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 import { getBeersList } from "../../../reducer/beer/action";
 import { COLUMNS } from "../../../pages/Beers/constants";
 
-const BeerTable = ({ 
+const BeerTable = ({
   onOpenModal,
   width,
   withPagination,
@@ -33,18 +33,16 @@ const BeerTable = ({
 
   return (
     <>
-      {!beersListIsLoading &&
-        <TableContainer width={width}>
-          <TableHeader columnsList={COLUMNS} changeSort={() => setAsc((asc) => !asc)} />
-          <TableRows rows={sortedBeers} onOpenModal={onOpenModal} />
-          {withPagination && (
-            <PaginationContainer>
-              <StyledButton onClick={() => setPage((page) => page - 1)} disabled={page === 1}>Previous</StyledButton>
-              <StyledButton onClick={() => setPage((page) => page + 1)}>Next</StyledButton>
-            </PaginationContainer>
-          )}
-        </TableContainer>
-      }
+      <TableContainer width={width}>
+        <TableHeader columnsList={COLUMNS} changeSort={() => setAsc((asc) => !asc)}/>
+        <TableRows rows={sortedBeers} onOpenModal={onOpenModal} isLoading={beersListIsLoading}/>
+        {withPagination && (
+          <PaginationContainer>
+            <StyledButton onClick={() => setPage((page) => page - 1)} disabled={page === 1}>Previous</StyledButton>
+            <StyledButton onClick={() => setPage((page) => page + 1)}>Next</StyledButton>
+          </PaginationContainer>
+        )}
+      </TableContainer>
     </>
   )
 };
